@@ -149,7 +149,7 @@ webhook:
   enabled: true               
   host: "0.0.0.0"
   port: 8000
-  secret: ${GITLAB_API_TOKEN}   
+  secret: ${WEBHOOK_SECRET}   
   review_command: "run"       
 ```
 
