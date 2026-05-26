@@ -84,32 +84,6 @@ def show_config():
     typer.secho("Loaded AI Review configuration:", fg=typer.colors.CYAN, bold=True)
     typer.echo(settings.model_dump_json(indent=2, exclude_none=True))
 
-@app.command("serve")
-def serve():
-    """Start the webhook server (requires webhook.enabled=true in config)"""
-    if not settings.webhook.enabled:
-        typer.secho(
-            "❌ Webhook server is disabled. Set webhook.enabled=true in config or "
-            "WEBHOOK__ENABLED=true as env variable.",
-            fg=typer.colors.RED,
-            bold=True,
-        )
-        raise typer.Exit(code=1)
-
-    typer.secho("🚀 Starting AI Review webhook server...", fg=typer.colors.CYAN, bold=True)
-    typer.secho(
-        f"   Host: {settings.webhook.host}\n"
-        f"   Port: {settings.webhook.port}\n"
-        f"   Review command: {settings.webhook.review_command}\n"
-        f"   Secret: {'configured' if settings.webhook.secret else 'not set'}",
-        fg=typer.colors.CYAN,
-    )
-
-    import uvicorn
-    from ai_review.webhook.server import create_app
-
-    app = create_app()
-    uvicorn.run(app, host=settings.webhook.host, port=settings.webhook.port)
 
 if __name__ == "__main__":
     app()

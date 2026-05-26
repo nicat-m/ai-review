@@ -19,7 +19,6 @@ from ai_review.libs.config.logger import LoggerConfig
 from ai_review.libs.config.prompt import PromptConfig
 from ai_review.libs.config.review import ReviewConfig
 from ai_review.libs.config.vcs.base import VCSConfig
-from ai_review.libs.config.webhook import WebhookConfig
 
 
 class Settings(BaseSettings):
@@ -45,7 +44,6 @@ class Settings(BaseSettings):
     review: ReviewConfig = ReviewConfig()
     logger: LoggerConfig = LoggerConfig()
     artifacts: ArtifactsConfig = ArtifactsConfig()
-    webhook: WebhookConfig = WebhookConfig()
 
     @classmethod
     def settings_customise_sources(
