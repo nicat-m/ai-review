@@ -144,6 +144,13 @@ vcs:
     timeout: 120
     api_url: https://gitlab.com
     api_token: ${GITLAB_API_TOKEN}
+
+webhook:
+  enabled: true               
+  host: "0.0.0.0"
+  port: 8000
+  secret: ${GITLAB_API_TOKEN}   
+  review_command: "run"       
 ```
 
 👉 This will:
